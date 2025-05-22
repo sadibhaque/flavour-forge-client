@@ -10,6 +10,7 @@ import AuthLayouts from "../layouts/AuthLayouts";
 import RecipeDetails from "../pages/RecipeDetails";
 import PrivateRoute from '../provider/PrivateRoute';
 import Loading from "../components/Loading";
+import WishList from "../pages/WishList";
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
                 element: (
                     <PrivateRoute>
                         <MyRecipes />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "/wish-list",
+                element: (
+                    <PrivateRoute>
+                        <WishList />
                     </PrivateRoute>
                 ),
             },

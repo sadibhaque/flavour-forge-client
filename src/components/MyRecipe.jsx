@@ -67,7 +67,7 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
         setFormValues((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedRecipe = {
             title: formValues.title,
@@ -77,9 +77,25 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
             categories: formValues.categories.split(",").map((s) => s.trim()),
             ingredients: formValues.ingredients.split(",").map((s) => s.trim()),
             instructions: formValues.instructions,
+            likes: recipe.likes || 0, // preserve likes count
         };
-        onUpdate(_id, updatedRecipe);
-        setShowModal(false);
+
+        try {
+            await onUpdate(_id, updatedRecipe);
+            // Update the local recipe state with new values while preserving the _id
+            recipe.title = updatedRecipe.title;
+            recipe.image_url = updatedRecipe.image_url;
+            recipe.cuisine_type = updatedRecipe.cuisine_type;
+            recipe.prep_time = updatedRecipe.prep_time;
+            recipe.categories = updatedRecipe.categories;
+            recipe.ingredients = updatedRecipe.ingredients;
+            recipe.instructions = updatedRecipe.instructions;
+
+            setFormValues(updatedRecipe); // Update form values
+            setShowModal(false);
+        } catch (error) {
+            console.error("Error updating recipe:", error);
+        }
     };
 
     const isCategorySelected = (category) => {
@@ -109,10 +125,7 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
                             {prep_time} mins
                         </button>
                         {categories.map((cat) => (
-                            <span
-                                key={cat}
-                                className="badge uppercase"
-                            >
+                            <span key={cat} className="badge uppercase">
                                 {cat}
                             </span>
                         ))}
@@ -129,7 +142,9 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
                         <h3 className="font-semibold text-xl">Instructions:</h3>
                         <p>{instructions}</p>
                     </div>
-                    <p className="mt-4 font-semibold text-xl">Likes: {likes || 0}</p>
+                    <p className="mt-4 font-semibold text-xl">
+                        Likes: {likes || 0}
+                    </p>
                     <div className="flex gap-2">
                         <button
                             onClick={() => setShowModal(true)}

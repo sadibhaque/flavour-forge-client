@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddRecipe = () => {
     const { user } = useContext(AuthContext);
@@ -40,7 +41,7 @@ const AddRecipe = () => {
             prep_time: prepTime,
             categories,
             likes: 0,
-            user_id: user?.uid || null,
+            user_id: user.email || null,
         };
         console.log(newRecipe);
 
@@ -52,8 +53,8 @@ const AddRecipe = () => {
             body: JSON.stringify(newRecipe),
         })
             .then((response) => response.json())
-            .then((data) => {
-                console.log("Recipe added:", data);
+            .then(() => {
+                toast.success("Recipe Added Successfully");
                 // Reset form fields
                 setTitle("");
                 setImageUrl("");
@@ -139,11 +140,12 @@ const AddRecipe = () => {
                                 <option value="" disabled>
                                     Select cuisine type
                                 </option>
-                                <option>Bengali</option>
+                                <option>Indian</option>
                                 <option>Mexican</option>
                                 <option>Chinese</option>
                                 <option>Italian</option>
                                 <option>American</option>
+                                <option>Others</option>
                             </select>
                         </div>
                         <div className="form-control w-full">

@@ -1,11 +1,12 @@
-import React, { use, useContext } from 'react';
+import React, { use, useContext } from "react";
 import { TbToolsKitchen } from "react-icons/tb";
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
-import { ThemeContext } from '../contexts/ThemeProvider';
-import { NavLink } from 'react-router';
-import { AuthContext } from '../provider/AuthProvider';
-import { toast } from 'react-toastify';
+import { ThemeContext } from "../contexts/ThemeProvider";
+import { NavLink } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
+import { toast } from "react-toastify";
+import WishList from "../pages/WishList";
 
 const Navbar = () => {
     const { isLight, setIsLight } = useContext(ThemeContext);
@@ -15,7 +16,7 @@ const Navbar = () => {
     const handleToggle = (e) => {
         e.preventDefault();
         setIsLight(!isLight);
-    }
+    };
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -23,6 +24,8 @@ const Navbar = () => {
         logoutUser()
             .then(() => {
                 console.log("Successfully Signed Out!");
+                // Clear wishlist array from memory by triggering a custom event
+                window.dispatchEvent(new CustomEvent("clearWishlist"));
                 toast.success("Logged Out !");
             })
             .catch((error) => {
@@ -76,9 +79,21 @@ const Navbar = () => {
                     </NavLink>
                 </li>
             )}
+            {user && (
+                <li>
+                    <NavLink
+                        to="/wish-list"
+                        className={({ isActive }) =>
+                            isActive ? "bg-primary rounded text-white" : ""
+                        }
+                    >
+                        Wish List
+                    </NavLink>
+                </li>
+            )}
         </>
     );
-    
+
     return (
         <div className="bg-base-300">
             <div className="navbar max-w-10/12 shadow-b mx-auto">

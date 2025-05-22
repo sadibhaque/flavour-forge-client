@@ -7,8 +7,8 @@ const MyRecipes = () => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        if (user?.uid) {
-            fetch(`http://localhost:5000/my-recipes?user_id=${user.uid}`)
+        if (user.email) {
+            fetch(`http://localhost:5000/my-recipes?user_id=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => setRecipes(data))
                 .catch((err) =>
@@ -56,13 +56,16 @@ const MyRecipes = () => {
                                     }
                                 )
                                     .then((res) => res.json())
-                                    .then((data) =>
+                                    .then(() => {
+                                        // Immediately update the UI with the new data
                                         setRecipes((prev) =>
                                             prev.map((r) =>
-                                                r._id === id ? data : r
+                                                r._id === id
+                                                    ? { ...r, ...updatedData }
+                                                    : r
                                             )
-                                        )
-                                    )
+                                        );
+                                    })
                                     .catch((err) =>
                                         console.error(
                                             "Error updating recipe:",
@@ -73,7 +76,9 @@ const MyRecipes = () => {
                         />
                     ))
                 ) : (
-                    <p className="text-center text-gray-500">No recipes added yet.</p>
+                    <p className="text-center col-span-3 text-gray-500">
+                        No recipes added yet.
+                    </p>
                 )}
             </div>
         </div>

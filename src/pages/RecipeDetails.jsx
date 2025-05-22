@@ -1,17 +1,19 @@
 import React, { useState, useEffect, use } from "react";
 import { useParams } from "react-router";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaList } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import { AuthContext } from "../provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const RecipeDetails = () => {
     const { id } = useParams();
 
-    const user = use(AuthContext);
+    const { user } = use(AuthContext);
 
     const [recipe, setRecipe] = useState(null);
     const [likeCount, setLikeCount] = useState(0);
+    const [isInWishlist, setIsInWishlist] = useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:5000/all-recipes/${id}`)
@@ -19,6 +21,13 @@ const RecipeDetails = () => {
             .then((data) => {
                 setRecipe(data);
                 setLikeCount(data.likes || 0);
+                // Check if recipe is already in wishlist
+                const existingWishlist =
+                    JSON.parse(localStorage.getItem("wishlist")) || [];
+                const exists = existingWishlist.some(
+                    (item) => item._id === data._id
+                );
+                setIsInWishlist(exists);
             })
             .catch((error) => console.error("Error fetching recipe:", error));
     }, [id]);
@@ -53,6 +62,32 @@ const RecipeDetails = () => {
             .catch((err) => console.error("Like error:", err));
     };
 
+    const handleWishList = () => {
+        // Get existing wishlist from localStorage
+        const existingWishlist =
+            JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        // Check if recipe already exists in wishlist
+        const isExists = existingWishlist.find(
+            (item) => item._id === recipe._id
+        );
+
+        if (isExists) {
+            toast.error("Recipe already in wishlist!");
+            return;
+        }
+
+        // Add new recipe to wishlist
+        const newWishlist = [...existingWishlist, recipe];
+
+        // Store updated wishlist in localStorage
+        localStorage.setItem("wishlist", JSON.stringify(newWishlist));
+
+        // Update state to disable button
+        setIsInWishlist(true);
+        toast.success("Recipe added to wishlist!");
+    };
+
     if (!recipe || !user) {
         return <Loading></Loading>;
     }
@@ -67,6 +102,10 @@ const RecipeDetails = () => {
         instructions,
         user_id,
     } = recipe;
+
+
+    console.log(user_id, user.email);
+
 
     return (
         <div>
@@ -89,7 +128,7 @@ const RecipeDetails = () => {
                     </div>
                     <div>
                         <div className="flex flex-wrap gap-2 mb-4">
-                            <span className="badge text-white border-primary bg-primary lowercase">
+                            <span className="badge text-white border-primary bg-primary uppercase">
                                 {cuisine_type}
                             </span>
                             <span className="badge text-white border-primary bg-primary">
@@ -123,9 +162,17 @@ const RecipeDetails = () => {
                             </p>
                         </div>
                         <button
+                            onClick={handleWishList}
+                            disabled={isInWishlist}
+                            className="btn  btn-block mb-3 flex items-center justify-center"
+                        >
+                            <FaList className={` mr-2`} />
+                            {isInWishlist ? "In Wish List" : "Add To Wish List"}
+                        </button>
+                        <button
                             onClick={handleLike}
-                            disabled={user_id == user.uid}
-                            className="btn btn-primary btn-block flex items-center justify-center"
+                            disabled={user_id === user.email}
+                            className="btn btn-primary text-white btn-block flex items-center justify-center"
                         >
                             <FaHeart className={`text-white mr-2`} />
                             Like This Recipe
