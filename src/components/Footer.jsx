@@ -9,7 +9,7 @@ import { TbToolsKitchen } from "react-icons/tb";
 
 const Footer = () => {
     return (
-        <footer className="bg-base-200 text-base-content pt-10">
+        <footer className="bg-base-300 text-base-content pt-10">
             <div className="max-w-10/12 text-center mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-base-300">
                 {/* Logo & About */}
                 <div className="flex flex-col items-center">
@@ -57,7 +57,7 @@ const Footer = () => {
                 {/* Social Media */}
                 <div className="flex flex-col items-center">
                     <h3 className="font-semibold mb-2">Follow Us</h3>
-                    <div className="flex space-x-4 mt-2 ">
+                    <div className="flex space-x-4 mt-2 text-primary">
                         <a className="text-xl hover:text-primary" href="#">
                             <FaFacebookF />
                         </a>

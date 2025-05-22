@@ -23,7 +23,7 @@ const CookingSection = () => {
     ];
 
     return (
-        <section className="py-16 bg-base-100 text-center">
+        <section className="py-16 bg-base-300 text-center">
             <div className="max-w-10/12 mx-auto px-4">
                 <h2 className="text-3xl font-bold text-base-content mb-2">
                     Cooking Made Simple

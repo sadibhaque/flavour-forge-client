@@ -15,7 +15,8 @@ const ThemeProvider = ({children}) => {
 
 
     useEffect(() => {
-        document.body.setAttribute("data-theme", isLight ? "light" : "dark");
+        document.getElementsByTagName("html")[0].setAttribute("data-theme", isLight ? "light" : "dark");
+        // document.documentElement.setAttribute("data-theme", isLight ? "light" : "dark");
     }, [isLight]);
 
     return (

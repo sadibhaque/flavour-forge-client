@@ -1,7 +1,83 @@
-import React from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import MyRecipe from "../components/MyRecipe";
 
 const MyRecipes = () => {
-    return <div>My Recipes</div>;
+    const { user } = useContext(AuthContext);
+    const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+        if (user?.uid) {
+            fetch(`http://localhost:5000/my-recipes?user_id=${user.uid}`)
+                .then((res) => res.json())
+                .then((data) => setRecipes(data))
+                .catch((err) =>
+                    console.error("Error fetching my recipes:", err)
+                );
+        }
+    }, [user]);
+
+    return (
+        <div className="min-h-screen max-w-10/12 mx-auto pb-15">
+            <h2 className="text-center text-2xl font-bold my-10">My Recipes</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 px-4">
+                {recipes.length ? (
+                    recipes.map((recipe) => (
+                        <MyRecipe
+                            recipe={recipe}
+                            key={recipe._id}
+                            onDelete={(id) => {
+                                fetch(
+                                    `http://localhost:5000/my-recipes/${id}`,
+                                    { method: "DELETE" }
+                                )
+                                    .then((res) => res.json())
+                                    .then(() =>
+                                        setRecipes((prev) =>
+                                            prev.filter((r) => r._id !== id)
+                                        )
+                                    )
+                                    .catch((err) =>
+                                        console.error(
+                                            "Error deleting recipe:",
+                                            err
+                                        )
+                                    );
+                            }}
+                            onUpdate={(id, updatedData) => {
+                                fetch(
+                                    `http://localhost:5000/all-recipes/${id}`,
+                                    {
+                                        method: "PUT",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify(updatedData),
+                                    }
+                                )
+                                    .then((res) => res.json())
+                                    .then((data) =>
+                                        setRecipes((prev) =>
+                                            prev.map((r) =>
+                                                r._id === id ? data : r
+                                            )
+                                        )
+                                    )
+                                    .catch((err) =>
+                                        console.error(
+                                            "Error updating recipe:",
+                                            err
+                                        )
+                                    );
+                            }}
+                        />
+                    ))
+                ) : (
+                    <p className="text-center text-gray-500">No recipes added yet.</p>
+                )}
+            </div>
+        </div>
+    );
 };
 
 export default MyRecipes;

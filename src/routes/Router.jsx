@@ -7,6 +7,9 @@ import AllRecipes from "../pages/AllRecipes";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthLayouts from "../layouts/AuthLayouts";
+import RecipeDetails from "../pages/RecipeDetails";
+import PrivateRoute from '../provider/PrivateRoute';
+import Loading from "../components/Loading";
 
 
 const router = createBrowserRouter([
@@ -21,17 +24,38 @@ const router = createBrowserRouter([
             },
             {
                 path: "/all-recipes",
+                loader: () => fetch("http://localhost:5000/all-recipes/"),
+                hydrateFallbackElement: <Loading></Loading>,
                 element: <AllRecipes />,
             },
             {
                 path: "/add-recipe",
-                element: <AddRecipe />,
+                element: (
+                    <PrivateRoute>
+                        <AddRecipe />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/my-recipes",
-                element: <MyRecipes />,
+                element: (
+                    <PrivateRoute>
+                        <MyRecipes />
+                    </PrivateRoute>
+                ),
             },
         ],
+    },
+    {
+        path: "/recipes/:id",
+        element: (
+            <PrivateRoute>
+                <RecipeDetails />
+            </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+            fetch(`http://localhost:5000/all-recipes/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
     },
     {
         path: "/auth",
@@ -46,6 +70,12 @@ const router = createBrowserRouter([
                 element: <Register></Register>,
             },
         ],
+    },
+    {
+        path: "*",
+        element: (
+            <div className="text-center text-3xl font-bold">404 Not Found</div>
+        ),
     },
 ]);
 
