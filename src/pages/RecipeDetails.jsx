@@ -131,20 +131,20 @@ const RecipeDetails = () => {
                             <span className="badge text-white border-primary bg-primary uppercase">
                                 {cuisine_type}
                             </span>
-                            <span className="badge text-white border-primary bg-primary">
+                            <span className="badge text-white border-primary bg-primary ">
                                 {prep_time} mins
                             </span>
                             {categories.map((cat) => (
                                 <span
                                     key={cat}
-                                    className="badge badge-outline lowercase"
+                                    className="badge text-primary border-primary uppercase"
                                 >
                                     {cat}
                                 </span>
                             ))}
                         </div>
                         <div className="mb-4">
-                            <h2 className="text-xl font-semibold mb-2">
+                            <h2 className="text-2xl font-semibold mb-2">
                                 Ingredients
                             </h2>
                             <ul className="list-disc list-inside space-y-1">
@@ -154,10 +154,10 @@ const RecipeDetails = () => {
                             </ul>
                         </div>
                         <div className="mb-6">
-                            <h2 className="text-xl font-semibold mb-2">
+                            <h2 className="text-2xl font-semibold mb-2">
                                 Instructions
                             </h2>
-                            <p className="whitespace-pre-line">
+                            <p className="whitespace-pre-line ">
                                 {instructions}
                             </p>
                         </div>

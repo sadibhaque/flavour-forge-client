@@ -3,23 +3,27 @@ import React from "react";
 const CommunitySection = () => {
     const members = [
         {
-            name: "Sarah Johnson",
-            role: "Home Cook",
+            name: "Rafsan Ahmed",
+            role: "Chef",
+            imgUrl: "https://i.ibb.co/C3FFbqkk/image.png",
             quote: "Recipe Book has transformed my cooking experience. I've discovered so many amazing recipes and love sharing my own creations with the community!",
         },
         {
-            name: "Michael Chen",
+            name: "Tanvir Khan",
             role: "Food Blogger",
+            imgUrl: "https://i.ibb.co/Pv6wx6J9/image.png",
             quote: "As a food blogger, I appreciate the clean interface and ease of sharing recipes. The community feedback has helped me improve my cooking skills.",
         },
         {
             name: "Emily Rodriguez",
             role: "Culinary Student",
+            imgUrl: "https://i.ibb.co/qYXgrLhf/image.png",
             quote: "This platform has been invaluable for my culinary education. I can practice different cuisines and get inspiration from experienced cooks.",
         },
         {
             name: "David Wilson",
             role: "Busy Parent",
+            imgUrl: "https://i.ibb.co/wFJZy49j/image.png",
             quote: "The quick meal section has been a lifesaver for our busy family. We've found so many delicious recipes that our kids actually enjoy!",
         },
     ];
@@ -41,7 +45,13 @@ const CommunitySection = () => {
                             className="card bg-base-200 shadow-md hover:shadow-lg transition"
                         >
                             <div className="card-body items-center text-center">
-                                <div className="w-16 h-16 rounded-full bg-base-300 mb-4" />
+                                <div className="w-16 h-16 rounded-full bg-base-300 mb-4">
+                                    <img
+                                        className="w-full h-full rounded-full"
+                                        src={member.imgUrl}
+                                        alt=""
+                                    />
+                                </div>
                                 <h3 className="card-title text-base-content">
                                     {member.name}
                                 </h3>

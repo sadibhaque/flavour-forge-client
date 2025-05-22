@@ -76,7 +76,7 @@ const WishList = () => {
                                     <div className="flex justify-between items-center mt-4">
                                         <Link
                                             to={`/recipes/${recipe._id}`}
-                                            className="btn btn-primary btn-sm"
+                                            className="btn text-white btn-primary btn-sm"
                                         >
                                             View Recipe
                                         </Link>
@@ -86,7 +86,7 @@ const WishList = () => {
                                                     recipe._id
                                                 )
                                             }
-                                            className="btn btn-error text-white btn-sm"
+                                            className="btn bg-red-500 text-white btn-sm"
                                         >
                                             <FaTrash />
                                         </button>

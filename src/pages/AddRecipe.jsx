@@ -81,8 +81,8 @@ const AddRecipe = () => {
                 >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Recipe Title</span>
+                            <label className="">
+                                <span className="text-base font-medium">Recipe Title</span>
                             </label>
                             <input
                                 type="text"
@@ -93,8 +93,8 @@ const AddRecipe = () => {
                             />
                         </div>
                         <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Image URL</span>
+                            <label className="">
+                                <span className="text-base font-medium">Image URL</span>
                             </label>
                             <input
                                 type="text"
@@ -106,8 +106,8 @@ const AddRecipe = () => {
                         </div>
                     </div>
                     <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Ingredients</span>
+                        <label className="">
+                            <span className="text-base font-medium">Ingredients</span>
                         </label>
                         <textarea
                             placeholder="Enter ingredients (one per line)"
@@ -117,8 +117,8 @@ const AddRecipe = () => {
                         />
                     </div>
                     <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Instructions</span>
+                        <label className="">
+                            <span className="text-base font-medium">Instructions</span>
                         </label>
                         <textarea
                             placeholder="Enter cooking instructions"
@@ -129,8 +129,8 @@ const AddRecipe = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Cuisine Type</span>
+                            <label className="">
+                                <span className="text-base font-medium">Cuisine Type</span>
                             </label>
                             <select
                                 className="select select-bordered w-full mb-2"
@@ -149,8 +149,8 @@ const AddRecipe = () => {
                             </select>
                         </div>
                         <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">
+                            <label className="">
+                                <span className="text-base font-medium">
                                     Preparation Time (minutes)
                                 </span>
                             </label>
@@ -164,8 +164,8 @@ const AddRecipe = () => {
                         </div>
                     </div>
                     <div>
-                        <label className="label mb-2 ">
-                            <span className="label-text">Categories</span>
+                        <label className="">
+                            <span className="text-base font-medium">Categories</span>
                         </label>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                             {categoryOptions.map((option) => (

@@ -20,7 +20,7 @@ const RecipeCard = ({
             .catch((err) => console.error("Like error:", err));
     };
     return (
-        <div className="card bg-base-100 shadow-md">
+        <div className="card bg-base-300 shadow-md">
             <figure>
                 <img
                     src={
@@ -34,7 +34,7 @@ const RecipeCard = ({
             <div className="card-body">
                 <h2 className="card-title flex items-center justify-between">
                     {title}
-                    <div className="badge border-gray-300 uppercase">
+                    <div className="badge uppercase">
                         {cuisine_type.toUpperCase()}
                     </div>
                 </h2>
@@ -43,11 +43,7 @@ const RecipeCard = ({
                         onClick={handleLike}
                         className="mr-1 focus:outline-none"
                     >
-                        <FaHeart
-                            className={`${
-                                liked ? "text-red-500" : "text-gray-400"
-                            } cursor-pointer`}
-                        />
+                        <FaHeart className={`ml-2 my-2 text-red-500 cursor-pointer`} />
                     </button>
                     {likeCount} likes
                 </p>

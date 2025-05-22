@@ -45,7 +45,7 @@ const MyRecipes = () => {
                                     );
                             }}
                             onUpdate={(id, updatedData) => {
-                                fetch(
+                                return fetch(
                                     `http://localhost:5000/all-recipes/${id}`,
                                     {
                                         method: "PUT",
@@ -55,7 +55,14 @@ const MyRecipes = () => {
                                         body: JSON.stringify(updatedData),
                                     }
                                 )
-                                    .then((res) => res.json())
+                                    .then((res) => {
+                                        if (!res.ok) {
+                                            throw new Error(
+                                                "Failed to update recipe"
+                                            );
+                                        }
+                                        return res.json();
+                                    })
                                     .then(() => {
                                         // Immediately update the UI with the new data
                                         setRecipes((prev) =>
@@ -65,13 +72,7 @@ const MyRecipes = () => {
                                                     : r
                                             )
                                         );
-                                    })
-                                    .catch((err) =>
-                                        console.error(
-                                            "Error updating recipe:",
-                                            err
-                                        )
-                                    );
+                                    });
                             }}
                         />
                     ))

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
     const {
@@ -22,7 +23,7 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
         image_url,
         cuisine_type,
         prep_time,
-        categories: categories.join(", "),
+        categories: Array.isArray(categories) ? categories.join(", ") : "",
         ingredients: Array.isArray(ingredients)
             ? ingredients.join(", ")
             : ingredients,
@@ -49,10 +50,15 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
 
     const handleCategoryChange = (category, isChecked) => {
         setFormValues((prev) => {
-            const currentCategories = prev.categories
-                .split(",")
-                .map((c) => c.trim())
-                .filter((c) => c !== "");
+            let currentCategories = [];
+            if (typeof prev.categories === "string") {
+                currentCategories = prev.categories
+                    .split(",")
+                    .map((c) => c.trim())
+                    .filter((c) => c !== "");
+            } else if (Array.isArray(prev.categories)) {
+                currentCategories = [...prev.categories];
+            }
 
             const newCategories = isChecked
                 ? [...currentCategories, category]
@@ -67,42 +73,53 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
         setFormValues((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Sanitize and prepare the data
+        const processedCategories = formValues.categories
+            .split(",")
+            .map((s) => s.trim())
+            .filter((s) => s);
+        const processedIngredients = formValues.ingredients
+            .split(",")
+            .map((s) => s.trim())
+            .filter((s) => s);
+
         const updatedRecipe = {
             title: formValues.title,
             image_url: formValues.image_url,
             cuisine_type: formValues.cuisine_type,
             prep_time: formValues.prep_time,
-            categories: formValues.categories.split(",").map((s) => s.trim()),
-            ingredients: formValues.ingredients.split(",").map((s) => s.trim()),
+            categories: processedCategories,
+            ingredients: processedIngredients,
             instructions: formValues.instructions,
-            likes: recipe.likes || 0, // preserve likes count
+            likes: recipe.likes || 0,
+            user_id: recipe.user_id, // preserve user_id
         };
 
-        try {
-            await onUpdate(_id, updatedRecipe);
-            // Update the local recipe state with new values while preserving the _id
-            recipe.title = updatedRecipe.title;
-            recipe.image_url = updatedRecipe.image_url;
-            recipe.cuisine_type = updatedRecipe.cuisine_type;
-            recipe.prep_time = updatedRecipe.prep_time;
-            recipe.categories = updatedRecipe.categories;
-            recipe.ingredients = updatedRecipe.ingredients;
-            recipe.instructions = updatedRecipe.instructions;
-
-            setFormValues(updatedRecipe); // Update form values
-            setShowModal(false);
-        } catch (error) {
-            console.error("Error updating recipe:", error);
-        }
+        // Send update to server
+        onUpdate(_id, updatedRecipe)
+            .then(() => {
+                // Update local state
+                Object.assign(recipe, updatedRecipe);
+                setShowModal(false);
+                toast.success("Recipe updated successfully!");
+            })
+            .catch((error) => {
+                console.error("Error updating recipe:", error);
+                toast.error("Failed to update recipe");
+            });
     };
 
     const isCategorySelected = (category) => {
-        return formValues.categories
-            .split(",")
-            .map((c) => c.trim())
-            .includes(category);
+        if (typeof formValues.categories === "string") {
+            return formValues.categories
+                .split(",")
+                .map((c) => c.trim())
+                .includes(category);
+        }
+        return formValues.categories.includes(category);
     };
 
     return (

@@ -7,18 +7,21 @@ const CookingSection = () => {
             description:
                 "Delicious recipes ready in 30 minutes or less, perfect for busy weeknights.",
             button: "Explore Quick Meals",
+            img: "https://i.ibb.co/RkH3p19w/image.png",
         },
         {
             title: "Healthy Options",
             description:
                 "Nutritious and flavorful recipes to keep you energized and feeling great.",
             button: "Discover Healthy Recipes",
+            img: "https://i.ibb.co/21wrmWRR/image.png",
         },
         {
             title: "Dessert Delights",
             description:
                 "Indulge in sweet treats from simple cookies to impressive cakes and pastries.",
             button: "Browse Desserts",
+            img: "https://i.ibb.co/DDcpNXBf/image.png",
         },
     ];
 
@@ -39,9 +42,11 @@ const CookingSection = () => {
                             className="card bg-base-200 shadow-sm hover:shadow-lg transition"
                         >
                             <figure className="bg-base-300 h-40 w-full flex items-center justify-center">
-                                <span className="text-base-content/50">
-                                    [Image Placeholder]
-                                </span>
+                                <img
+                                    src={feature.img}
+                                    alt={feature.title}
+                                    className="w-full h-full object-cover"
+                                />
                             </figure>
                             <div className="card-body text-left">
                                 <h3 className="text-lg font-semibold text-base-content">
@@ -51,7 +56,7 @@ const CookingSection = () => {
                                     {feature.description}
                                 </p>
                                 <div className="mt-4">
-                                    <button className="btn btn-outline w-full">
+                                    <button className="btn btn-outline border-primary text-primary w-full">
                                         {feature.button}
                                     </button>
                                 </div>
