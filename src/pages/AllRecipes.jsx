@@ -14,7 +14,7 @@ const AllRecipes = () => {
             : recipes.filter((r) => r.cuisine_type === filter);
 
     return (
-        <div className="w-10/12 mx-auto mt-10 min-h-screen">
+        <div className="w-10/12 mx-auto mt-10 min-h-screen mb-10">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold text-center my-5 mb-10">
                     All Recipes
