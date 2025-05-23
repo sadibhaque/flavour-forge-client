@@ -6,6 +6,7 @@ import {
     FaPinterestP,
 } from "react-icons/fa";
 import { TbToolsKitchen } from "react-icons/tb";
+import { NavLink } from "react-router";
 
 const Footer = () => {
     return (
@@ -30,16 +31,16 @@ const Footer = () => {
                     <h3 className="font-semibold mb-2">Quick Links</h3>
                     <ul className="space-y-1 text-sm">
                         <li>
-                            <a className="link link-hover">Home</a>
+                            <NavLink to="/" className="link link-hover">Home</NavLink>
                         </li>
                         <li>
-                            <a className="link link-hover">All Recipes</a>
+                            <NavLink to="/all-recipes" className="link link-hover">All Recipes</NavLink>
                         </li>
                         <li>
-                            <a className="link link-hover">Add Recipe</a>
+                            <NavLink to="/add-recipe" className="link link-hover">Add Recipe</NavLink>
                         </li>
                         <li>
-                            <a className="link link-hover">My Recipes</a>
+                            <NavLink to="/my-recipes" className="link link-hover">My Recipes</NavLink>
                         </li>
                     </ul>
                 </div>
