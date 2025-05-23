@@ -16,6 +16,17 @@ const RecipeDetails = () => {
     const [isInWishlist, setIsInWishlist] = useState(false);
 
     useEffect(() => {
+        fetch(`http://localhost:5000/check-wishlist/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.length > 0) {
+                    setIsInWishlist(true);
+                }
+            })
+            .catch((error) => console.error("Error fetching wishlist:", error));
+    }, [id, setIsInWishlist]);
+
+    useEffect(() => {
         fetch(`http://localhost:5000/all-recipes/${id}`)
             .then((response) => response.json())
             .then((data) => {
@@ -60,7 +71,7 @@ const RecipeDetails = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ recipe, user: user.email }),
+            body: JSON.stringify({ recipe, recipeId: id, user: user.email }),
         })
             .then((res) => res.json())
             .then((data) => {
