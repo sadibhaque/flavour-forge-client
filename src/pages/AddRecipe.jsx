@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
+import { Typewriter } from "react-simple-typewriter";
 
 const AddRecipe = () => {
     const { user } = useContext(AuthContext);
@@ -73,16 +74,22 @@ const AddRecipe = () => {
         <>
             <div className="container mx-auto p-4 lg:max-w-6/12 min-h-screen">
                 <h2 className="text-center font-bold text-2xl m-5">
-                    Add New Recipe
+                    <Typewriter
+                        words={["Add New Recipe"]}
+                        loop={true}
+                        cursor={true}
+                    />
                 </h2>
                 <form
                     onSubmit={handleSubmit}
-                    className="bg-base-100 p-6 rounded-lg border border-gray-300 space-y-6"
+                    className="bg-base-300 p-6 rounded-lg border border-gray-300 space-y-6"
                 >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="form-control w-full">
                             <label className="">
-                                <span className="text-base font-medium">Recipe Title</span>
+                                <span className="text-base font-medium">
+                                    Recipe Title
+                                </span>
                             </label>
                             <input
                                 type="text"
@@ -94,7 +101,9 @@ const AddRecipe = () => {
                         </div>
                         <div className="form-control w-full">
                             <label className="">
-                                <span className="text-base font-medium">Image URL</span>
+                                <span className="text-base font-medium">
+                                    Image URL
+                                </span>
                             </label>
                             <input
                                 type="text"
@@ -107,7 +116,9 @@ const AddRecipe = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="">
-                            <span className="text-base font-medium">Ingredients</span>
+                            <span className="text-base font-medium">
+                                Ingredients
+                            </span>
                         </label>
                         <textarea
                             placeholder="Enter ingredients (one per line)"
@@ -118,7 +129,9 @@ const AddRecipe = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="">
-                            <span className="text-base font-medium">Instructions</span>
+                            <span className="text-base font-medium">
+                                Instructions
+                            </span>
                         </label>
                         <textarea
                             placeholder="Enter cooking instructions"
@@ -130,7 +143,9 @@ const AddRecipe = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="form-control w-full">
                             <label className="">
-                                <span className="text-base font-medium">Cuisine Type</span>
+                                <span className="text-base font-medium">
+                                    Cuisine Type
+                                </span>
                             </label>
                             <select
                                 className="select select-bordered w-full mb-2"
@@ -165,7 +180,9 @@ const AddRecipe = () => {
                     </div>
                     <div>
                         <label className="">
-                            <span className="text-base font-medium">Categories</span>
+                            <span className="text-base font-medium">
+                                Categories
+                            </span>
                         </label>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                             {categoryOptions.map((option) => (
@@ -188,7 +205,10 @@ const AddRecipe = () => {
                             ))}
                         </div>
                     </div>
-                    <button type="submit" className="btn text-white btn-primary w-full">
+                    <button
+                        type="submit"
+                        className="btn text-white btn-primary w-full"
+                    >
                         Add Recipe
                     </button>
                 </form>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Typewriter } from "react-simple-typewriter";
 
 const CommunitySection = () => {
     const members = [
@@ -32,7 +33,11 @@ const CommunitySection = () => {
         <section className="py-16 bg-base-100 text-center transition-colors duration-300">
             <div className="max-w-10/12 mx-auto px-4">
                 <h2 className="text-3xl font-bold text-base-content mb-2">
-                    Our Community
+                    <Typewriter
+                        words={["Our Community"]}
+                        loop={true}
+                        cursor={true}
+                    />
                 </h2>
                 <p className="text-base-content/70 mb-12">
                     Join thousands of food enthusiasts sharing their culinary

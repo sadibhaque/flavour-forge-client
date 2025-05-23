@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
 
 const CookingSection = () => {
     const features = [
@@ -30,7 +31,11 @@ const CookingSection = () => {
         <section className="py-16 bg-base-300 text-center">
             <div className="max-w-10/12 mx-auto px-4">
                 <h2 className="text-3xl font-bold text-base-content mb-2">
-                    Cooking Made Simple
+                    <Typewriter
+                        words={["Cooking Made Simple"]}
+                        loop={true}
+                        cursor={true}
+                    />
                 </h2>
                 <p className="text-base-content/70 mb-12">
                     Discover the joy of cooking with our easy-to-follow recipes
@@ -57,7 +62,10 @@ const CookingSection = () => {
                                     {feature.description}
                                 </p>
                                 <div className="mt-4">
-                                    <NavLink to="/all-recipes" className="btn btn-outline border-primary text-primary w-full">
+                                    <NavLink
+                                        to="/all-recipes"
+                                        className="btn btn-outline border-primary text-primary w-full"
+                                    >
                                         {feature.button}
                                     </NavLink>
                                 </div>

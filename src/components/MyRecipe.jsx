@@ -94,9 +94,8 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
             ingredients: processedIngredients,
             instructions: formValues.instructions,
             likes: recipe.likes || 0,
-            user_id: recipe.user_id, 
+            user_id: recipe.user_id,
         };
-
 
         onUpdate(_id, updatedRecipe)
             .then(() => {
@@ -130,7 +129,7 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
                         className="w-full h-48 object-cover"
                     />
                 </figure>
-                <div className="card-body">
+                <div className="card-body flex flex-col justify-between">
                     <h2 className="card-title">{title}</h2>
                     <div className="flex flex-wrap gap-2 mt-2">
                         <span className="badge bg-primary uppercase text-white">
@@ -157,22 +156,26 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
                         <h3 className="font-semibold text-xl">Instructions:</h3>
                         <p>{instructions}</p>
                     </div>
-                    <p className="mt-4 font-semibold text-xl">
-                        Likes: {likes || 0}
-                    </p>
-                    <div className="flex gap-2">
-                        <button
-                            onClick={() => setShowModal(true)}
-                            className="btn btn-sm gap-2"
-                        >
-                            <FaEdit /> Update
-                        </button>
-                        <button
-                            onClick={() => onDelete(_id)}
-                            className="text-white btn bg-red-600 btn-sm gap-2"
-                        >
-                            <FaTrash /> Delete
-                        </button>
+                    <div className="flex flex-col justify-end ">
+                        <div>
+                            <p className="my-2 ml-1 font-semibold text-sm">
+                                Likes: {likes || 0}
+                            </p>
+                        </div>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => setShowModal(true)}
+                                className="btn btn-sm gap-2"
+                            >
+                                <FaEdit /> Update
+                            </button>
+                            <button
+                                onClick={() => onDelete(_id)}
+                                className="text-white btn bg-red-600 btn-sm gap-2"
+                            >
+                                <FaTrash /> Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

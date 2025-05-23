@@ -3,6 +3,7 @@ import { FaTrash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { Typewriter } from "react-simple-typewriter";
 
 const WishList = () => {
     const [wishlistItems, setWishlistItems] = useState([]);
@@ -35,7 +36,11 @@ const WishList = () => {
         <div className="bg-base-100 min-h-screen">
             <div className="container mx-auto p-4">
                 <h2 className="text-3xl font-bold text-center mb-8">
-                    My Wish List
+                    <Typewriter
+                        words={["My Wish List"]}
+                        loop={true}
+                        cursor={true}
+                    />
                 </h2>
                 {wishlistItems.length === 0 ? (
                     <div className="text-center text-gray-500">

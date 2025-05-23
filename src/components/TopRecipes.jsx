@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
 import Loading from "./Loading";
 import { NavLink } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
 
 const TopRecipes = () => {
     const [recipes, setRecipes] = useState([]);
@@ -33,9 +34,12 @@ const TopRecipes = () => {
             <div className="w-10/12 mx-auto ">
                 <div className="flex justify-between items-center">
                     <h2 className="text-2xl font-bold text-center my-6 py-10">
-                        Top Recipes
+                        <Typewriter words={['Top Recipes']} loop={true} cursor={true} />
                     </h2>
-                    <NavLink to="/all-recipes" className="text-1xl btn text-white btn-primary font-bold text-center ">
+                    <NavLink
+                        to="/all-recipes"
+                        className="text-1xl btn text-white btn-primary font-bold text-center "
+                    >
                         See All Recipes
                     </NavLink>
                 </div>

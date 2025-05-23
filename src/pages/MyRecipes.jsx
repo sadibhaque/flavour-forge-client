@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import MyRecipe from "../components/MyRecipe";
+import { Typewriter } from "react-simple-typewriter";
 
 const MyRecipes = () => {
     const { user } = useContext(AuthContext);
@@ -19,7 +20,9 @@ const MyRecipes = () => {
 
     return (
         <div className="min-h-screen max-w-10/12 mx-auto pb-15">
-            <h2 className="text-center text-2xl font-bold my-10">My Recipes</h2>
+            <h2 className="text-center text-2xl font-bold my-10">
+                <Typewriter words={["My Recipes"]} loop={true} cursor={true} />
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 px-4">
                 {recipes.length ? (
                     recipes.map((recipe) => (
