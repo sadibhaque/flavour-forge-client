@@ -3,11 +3,10 @@ import { NavLink, useLocation, useNavigate } from "react-router";
 
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
-import { AuthContext } from '../provider/AuthProvider';
+import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
-    const { loginUser, loginWithGoogle, setUser, setBalance } =
-        useContext(AuthContext);
+    const { loginUser, loginWithGoogle, setUser } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -22,7 +21,6 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 setUser(userCredential.user);
-                setBalance(10000);
                 navigate(`${location.state ? location.state : "/"}`);
                 toast.success("Login successful");
             })
@@ -36,7 +34,6 @@ const Login = () => {
             .then((result) => {
                 setUser(result.user);
                 toast.success("Login successful");
-                setBalance(10000);
                 navigate(`${location.state ? location.state : "/"}`);
             })
             .catch((error) => {

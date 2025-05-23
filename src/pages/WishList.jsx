@@ -2,6 +2,7 @@ import React, { useState, useEffect, use } from "react";
 import { FaTrash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const WishList = () => {
     const [wishlistItems, setWishlistItems] = useState([]);
@@ -25,6 +26,7 @@ const WishList = () => {
                 setWishlistItems((prev) =>
                     prev.filter((r) => r._id !== recipeId)
                 );
+                toast.success("Recipe removed from wishlist");
             })
             .catch((err) => console.error("Error deleting item:", err));
     };
