@@ -97,8 +97,6 @@ const RecipeDetails = () => {
         user_id,
     } = recipe;
 
-    console.log(user_id, user.email);
-
     return (
         <div>
             <Navbar></Navbar>
