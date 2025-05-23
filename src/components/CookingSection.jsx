@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const CookingSection = () => {
     const features = [
@@ -56,9 +57,9 @@ const CookingSection = () => {
                                     {feature.description}
                                 </p>
                                 <div className="mt-4">
-                                    <button className="btn btn-outline border-primary text-primary w-full">
+                                    <NavLink to="/all-recipes" className="btn btn-outline border-primary text-primary w-full">
                                         {feature.button}
-                                    </button>
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>
