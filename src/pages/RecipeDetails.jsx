@@ -22,12 +22,12 @@ const RecipeDetails = () => {
                 setRecipe(data);
                 setLikeCount(data.likes || 0);
                 // Check if recipe is already in wishlist
-                const existingWishlist =
-                    JSON.parse(localStorage.getItem("wishlist")) || [];
-                const exists = existingWishlist.some(
-                    (item) => item._id === data._id
-                );
-                setIsInWishlist(exists);
+                // const existingWishlist =
+                //     JSON.parse(localStorage.getItem("wishlist")) || [];
+                // const exists = existingWishlist.some(
+                //     (item) => item._id === data._id
+                // );
+                // setIsInWishlist(exists);
             })
             .catch((error) => console.error("Error fetching recipe:", error));
     }, [id]);
@@ -63,29 +63,23 @@ const RecipeDetails = () => {
     };
 
     const handleWishList = () => {
-        // Get existing wishlist from localStorage
-        const existingWishlist =
-            JSON.parse(localStorage.getItem("wishlist")) || [];
-
-        // Check if recipe already exists in wishlist
-        const isExists = existingWishlist.find(
-            (item) => item._id === recipe._id
-        );
-
-        if (isExists) {
-            toast.error("Recipe already in wishlist!");
-            return;
-        }
-
-        // Add new recipe to wishlist
-        const newWishlist = [...existingWishlist, recipe];
-
-        // Store updated wishlist in localStorage
-        localStorage.setItem("wishlist", JSON.stringify(newWishlist));
-
-        // Update state to disable button
-        setIsInWishlist(true);
-        toast.success("Recipe added to wishlist!");
+        fetch(`http://localhost:5000/add-to-wishlist`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ recipe, user: user.email }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    setIsInWishlist(!isInWishlist);
+                    toast.success("Recipe removed from wishlist!");
+                } else {
+                    toast.error("Failed to add to wishlist.");
+                }
+            })
+            .catch((err) => console.error("Wishlist error:", err));
     };
 
     if (!recipe || !user) {
@@ -103,9 +97,7 @@ const RecipeDetails = () => {
         user_id,
     } = recipe;
 
-
     console.log(user_id, user.email);
-
 
     return (
         <div>

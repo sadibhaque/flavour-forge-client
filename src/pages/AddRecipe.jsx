@@ -188,7 +188,7 @@ const AddRecipe = () => {
                             ))}
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary w-full">
+                    <button type="submit" className="btn text-white btn-primary w-full">
                         Add Recipe
                     </button>
                 </form>

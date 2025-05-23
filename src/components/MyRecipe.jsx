@@ -76,7 +76,6 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Sanitize and prepare the data
         const processedCategories = formValues.categories
             .split(",")
             .map((s) => s.trim())
@@ -95,13 +94,12 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
             ingredients: processedIngredients,
             instructions: formValues.instructions,
             likes: recipe.likes || 0,
-            user_id: recipe.user_id, // preserve user_id
+            user_id: recipe.user_id, 
         };
 
-        // Send update to server
+
         onUpdate(_id, updatedRecipe)
             .then(() => {
-                // Update local state
                 Object.assign(recipe, updatedRecipe);
                 setShowModal(false);
                 toast.success("Recipe updated successfully!");

@@ -5,41 +5,28 @@ import { Link } from "react-router";
 
 const WishList = () => {
     const [wishlistItems, setWishlistItems] = useState([]);
-    const user = use(AuthContext);
+    const { user } = use(AuthContext);
 
     useEffect(() => {
-        // Clear wishlist if no user is logged in
-        if (!user) {
-            setWishlistItems([]);
-            return;
-        }
-
-        // Get wishlist from localStorage
-        const items = JSON.parse(localStorage.getItem("wishlist")) || [];
-        setWishlistItems(items);
-
-        // Listen for logout event to clear wishlist array
-        const handleClearWishlist = () => {
-            setWishlistItems([]);
-        };
-
-        window.addEventListener("clearWishlist", handleClearWishlist);
-
-        // Cleanup listener on component unmount
-        return () => {
-            window.removeEventListener("clearWishlist", handleClearWishlist);
-        };
-    }, [user]); // Added user dependency to re-run effect when user changes
+        fetch(`http://localhost:5000/all-wishlist/${user.email}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setWishlistItems(data);
+            })
+            .catch((err) => console.error("Error fetching wishlist:", err));
+    }, [user.email]);
 
     const handleRemoveFromWishlist = (recipeId) => {
-        // Filter out the removed recipe
-        const updatedWishlist = wishlistItems.filter(
-            (item) => item._id !== recipeId
-        );
-        // Update localStorage
-        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-        // Update state
-        setWishlistItems(updatedWishlist);
+        fetch(`http://localhost:5000/all-wishlist/${recipeId}`, {
+            method: "DELETE",
+        })
+            .then((res) => res.json())
+            .then(() => {
+                setWishlistItems((prev) =>
+                    prev.filter((r) => r._id !== recipeId)
+                );
+            })
+            .catch((err) => console.error("Error deleting item:", err));
     };
 
     return (
@@ -61,17 +48,17 @@ const WishList = () => {
                             >
                                 <figure className="relative">
                                     <img
-                                        src={recipe.image_url}
+                                        src={recipe.recipe.image_url}
                                         alt={recipe.title}
                                         className="w-full h-48 object-cover"
                                     />
                                 </figure>
                                 <div className="card-body bg-base-300">
                                     <h2 className="card-title">
-                                        {recipe.title}
+                                        {recipe.recipe.title}
                                     </h2>
                                     <p className="text-sm text-gray-500">
-                                        {recipe.cuisine_type}
+                                        {recipe.recipe.cuisine_type}
                                     </p>
                                     <div className="flex justify-between items-center mt-4">
                                         <Link
