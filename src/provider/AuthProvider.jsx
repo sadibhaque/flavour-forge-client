@@ -11,22 +11,12 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.init";
 
-
 const auth = getAuth(app);
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
-    const [balance, setBalance] = useState(() => {
-        const localBalance = localStorage.getItem("balance");
-        return localBalance ? JSON.parse(localBalance) : 100001;
-    });
-
-    useEffect(() => {
-        localStorage.setItem("balance", JSON.stringify(balance));
-    }, [balance]);
 
     const logoutUser = () => {
         return signOut(auth).then(() => {
@@ -71,8 +61,6 @@ const AuthProvider = ({ children }) => {
         setLoading,
         updateUser,
         loginWithGoogle,
-        balance,
-        setBalance,
     };
     return (
         <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
