@@ -1,12 +1,55 @@
-# React + Vite
+# 🍽️ Recipe Book App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Recipe Book App**, a dynamic and user-friendly platform for food enthusiasts to **manage, discover, and share recipes**. Whether you're a home cook or a seasoned chef, this app allows you to curate your own recipe collection, explore new dishes, and connect with a vibrant community of food lovers.
 
-Currently, two official plugins are available:
+🌐 **Live Site:** [Visit Recipe Book App](https://your-live-site-url.com)  
+_(Replace this link with your actual deployed URL)_
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-   **🔐 Recipe Management**
+
+    -   Authenticated users can add, edit, and delete their own recipes.
+    -   "My Recipes" page to view and manage personal contributions.
+
+-   **💖 Wishlist Functionality**
+
+    -   Save favorite recipes to your wishlist for quick access.
+    -   Data is securely stored in MongoDB.
+
+-   **🔍 Interactive Recipe Discovery**
+
+    -   Browse all recipes in a responsive 4-column grid.
+    -   Filter recipes by cuisine type (e.g., Italian, Mexican).
+    -   View the top 6 most-liked recipes on the homepage.
+
+-   **🎨 Engaging User Experience**
+
+    -   Dynamic image slider and animations on the homepage.
+    -   Dark/Light theme toggle for user preference.
+    -   Animated UI with Lottie React and React Awesome Reveal.
+
+-   **🔐 Secure Authentication**
+
+    -   Register/Login with Firebase Authentication.
+    -   Google Sign-In supported.
+    -   Private routes ensure secure user access.
+
+-   **📱 Responsive Design**
+    -   Fully responsive layout across mobile, tablet, and desktop devices.
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone the Repositories
+
+```bash
+# Client-side
+git clone https://github.com/your-username/recipe-book-client.git
+
+# Server-side
+git clone https://github.com/your-username/recipe-book-server.git
+```
