@@ -21,20 +21,12 @@ const RecipeDetails = () => {
             .then((data) => {
                 setRecipe(data);
                 setLikeCount(data.likes || 0);
-                // Check if recipe is already in wishlist
-                // const existingWishlist =
-                //     JSON.parse(localStorage.getItem("wishlist")) || [];
-                // const exists = existingWishlist.some(
-                //     (item) => item._id === data._id
-                // );
-                // setIsInWishlist(exists);
             })
             .catch((error) => console.error("Error fetching recipe:", error));
     }, [id]);
 
     const handleLike = () => {
-        const action = "like";
-        fetch(`http://localhost:5000/all-recipes/${id}/${action}`, {
+        fetch(`http://localhost:5000/all-recipes/${id}/like`, {
             method: "PATCH",
         })
             .then(async (res) => {
@@ -72,11 +64,11 @@ const RecipeDetails = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.success) {
+                if (data) {
                     setIsInWishlist(!isInWishlist);
-                    toast.success("Recipe removed from wishlist!");
+                    toast.success("Recipe Added to Wishlist!");
                 } else {
-                    toast.error("Failed to add to wishlist.");
+                    toast.error("Failed to add to Wishlist.");
                 }
             })
             .catch((err) => console.error("Wishlist error:", err));
