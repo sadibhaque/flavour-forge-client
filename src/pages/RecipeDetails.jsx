@@ -14,13 +14,16 @@ const RecipeDetails = () => {
     const [recipe, setRecipe] = useState(null);
     const [likeCount, setLikeCount] = useState(0);
     const [isInWishlist, setIsInWishlist] = useState(false);
+    
+
 
     useEffect(() => {
-        fetch(`https://flavour-forge-server.vercel.app/all-wishlist/${id}`)
+        fetch(`https://flavour-forge-server.vercel.app/check-wishlist/${id}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data.length > 0) {
                     setIsInWishlist(true);
+                    console.log(data);
                 }
             })
             .catch((error) => console.error("Error fetching wishlist:", error));
@@ -31,7 +34,7 @@ const RecipeDetails = () => {
             .then((response) => response.json())
             .then((data) => {
                 setRecipe(data);
-                // setLikeCount(data.likes || 0);
+                setLikeCount(data.likes || 0);
             })
             .catch((error) => console.error("Error fetching recipe:", error));
     }, [id]);
