@@ -1,8 +1,8 @@
-# 🍽️ Recipe Book App
+# 🍽️ FlavourForge
 
-Welcome to **Recipe Book App**, a dynamic and user-friendly platform for food enthusiasts to **manage, discover, and share recipes**. Whether you're a home cook or a seasoned chef, this app allows you to curate your own recipe collection, explore new dishes, and connect with a vibrant community of food lovers.
+Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthusiasts to **manage, discover, and share recipes**. Whether you're a home cook or a seasoned chef, this app allows you to curate your own recipe collection, explore new dishes, and connect with a vibrant community of food lovers.
 
-🌐 **Live Site:** [Visit Recipe Book App](https://sadib-assignment-10-ph.netlify.app/)
+🌐 **Live Site:** [Visit FlavourForge](https://sadib-assignment-10-ph.netlify.app/)
 
 ---
 
