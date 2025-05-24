@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Motion from "./Motion";
 
 const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
     const {
@@ -130,19 +131,21 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
                     />
                 </figure>
                 <div className="card-body flex flex-col justify-between">
-                    <h2 className="card-title">{title}</h2>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                        <span className="badge bg-primary uppercase text-white">
-                            {cuisine_type}
-                        </span>
-                        <button className="badge bg-primary uppercase text-white">
-                            {prep_time} mins
-                        </button>
-                        {categories.map((cat) => (
-                            <span key={cat} className="badge uppercase">
-                                {cat}
+                    <div>
+                        <h2 className="card-title">{title}</h2>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                            <span className="badge bg-primary uppercase text-white">
+                                {cuisine_type}
                             </span>
-                        ))}
+                            <button className="badge bg-primary uppercase text-white">
+                                {prep_time} mins
+                            </button>
+                            {categories.map((cat) => (
+                                <span key={cat} className="badge uppercase">
+                                    {cat}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                     <div className="mt-4">
                         <h3 className="font-semibold  text-xl">Ingredients:</h3>
@@ -302,7 +305,7 @@ const MyRecipe = ({ recipe, onDelete, onUpdate }) => {
                                 <button
                                     type="button"
                                     onClick={() => setShowModal(false)}
-                                    className="btn btn-outline btn-sm hover:bg-gray-100 transition-colors"
+                                    className="btn btn-sm hover:bg-gray-100 transition-colors"
                                 >
                                     Cancel
                                 </button>

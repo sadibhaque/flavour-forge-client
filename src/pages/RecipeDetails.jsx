@@ -16,7 +16,7 @@ const RecipeDetails = () => {
     const [isInWishlist, setIsInWishlist] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/check-wishlist/${id}`)
+        fetch(`https://flavour-forge-server.vercel.app/all-wishlist/${id}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data.length > 0) {
@@ -27,19 +27,22 @@ const RecipeDetails = () => {
     }, [id, setIsInWishlist]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/all-recipes/${id}`)
+        fetch(`https://flavour-forge-server.vercel.app/all-recipes/${id}`)
             .then((response) => response.json())
             .then((data) => {
                 setRecipe(data);
-                setLikeCount(data.likes || 0);
+                // setLikeCount(data.likes || 0);
             })
             .catch((error) => console.error("Error fetching recipe:", error));
     }, [id]);
 
     const handleLike = () => {
-        fetch(`http://localhost:5000/all-recipes/${id}/like`, {
-            method: "PATCH",
-        })
+        fetch(
+            `https://flavour-forge-server.vercel.app/all-recipes/${id}/like`,
+            {
+                method: "PATCH",
+            }
+        )
             .then(async (res) => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -66,7 +69,7 @@ const RecipeDetails = () => {
     };
 
     const handleWishList = () => {
-        fetch(`http://localhost:5000/add-to-wishlist`, {
+        fetch(`https://flavour-forge-server.vercel.app/add-to-wishlist`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

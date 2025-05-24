@@ -2,8 +2,7 @@
 
 Welcome to **Recipe Book App**, a dynamic and user-friendly platform for food enthusiasts to **manage, discover, and share recipes**. Whether you're a home cook or a seasoned chef, this app allows you to curate your own recipe collection, explore new dishes, and connect with a vibrant community of food lovers.
 
-🌐 **Live Site:** [Visit Recipe Book App](https://your-live-site-url.com)  
-_(Replace this link with your actual deployed URL)_
+🌐 **Live Site:** [Visit Recipe Book App](https://sadib-assignment-10-ph.netlify.app/)
 
 ---
 
@@ -48,8 +47,8 @@ _(Replace this link with your actual deployed URL)_
 
 ```bash
 # Client-side
-git clone https://github.com/your-username/recipe-book-client.git
+git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-sadibhaque
 
 # Server-side
-git clone https://github.com/your-username/recipe-book-server.git
+git clone https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-sadibhaque
 ```

@@ -8,10 +8,10 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthLayouts from "../layouts/AuthLayouts";
 import RecipeDetails from "../pages/RecipeDetails";
-import PrivateRoute from '../provider/PrivateRoute';
+import PrivateRoute from "../provider/PrivateRoute";
 import Loading from "../components/Loading";
 import WishList from "../pages/WishList";
-
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
     {
@@ -25,7 +25,10 @@ const router = createBrowserRouter([
             },
             {
                 path: "/all-recipes",
-                loader: () => fetch("http://localhost:5000/all-recipes/"),
+                loader: () =>
+                    fetch(
+                        "https://flavour-forge-server.vercel.app/all-recipes/"
+                    ),
                 hydrateFallbackElement: <Loading></Loading>,
                 element: <AllRecipes />,
             },
@@ -63,7 +66,9 @@ const router = createBrowserRouter([
             </PrivateRoute>
         ),
         loader: ({ params }) =>
-            fetch(`http://localhost:5000/all-recipes/${params.id}`),
+            fetch(
+                `https://flavour-forge-server.vercel.app/all-recipes/${params.id}`
+            ),
         hydrateFallbackElement: <Loading></Loading>,
     },
     {
@@ -82,11 +87,8 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: (
-            <div className="text-center text-3xl font-bold">404 Not Found</div>
-        ),
+        element: <Error />,
     },
 ]);
-
 
 export default router;

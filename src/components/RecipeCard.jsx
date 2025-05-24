@@ -9,9 +9,12 @@ const RecipeCard = ({
     const [liked, setLiked] = useState(false);
     const handleLike = () => {
         const action = liked ? "unlike" : "like";
-        fetch(`http://localhost:5000/all-recipes/${_id}/${action}`, {
-            method: "PATCH",
-        })
+        fetch(
+            `https://flavour-forge-server.vercel.app/all-recipes/${_id}/${action}`,
+            {
+                method: "PATCH",
+            }
+        )
             .then((res) => res.json())
             .then((updated) => {
                 setLikeCount(updated.likes);
@@ -33,24 +36,24 @@ const RecipeCard = ({
             </figure>
             <div className="card-body">
                 <h2 className="card-title flex items-center justify-between">
-                    {title}
-                    <div className="badge uppercase">
-                        {cuisine_type.toUpperCase()}
-                    </div>
+                    <span className="text-sm">{title}</span>
+                    <div className="text-xs p-1 rounded bg-base-100">{cuisine_type}</div>
                 </h2>
                 <p className="flex items-center text-sm text-gray-600">
                     <button
                         onClick={handleLike}
                         className="mr-1 focus:outline-none"
                     >
-                        <FaHeart className={`ml-2 my-2 text-red-500 cursor-pointer`} />
+                        <FaHeart
+                            className={`ml-2 my-2 text-red-500 cursor-pointer`}
+                        />
                     </button>
                     {likeCount} likes
                 </p>
                 <div className="card-actions justify-end">
                     <NavLink
                         to={`/recipes/${_id}`}
-                        className="btn text-white btn-primary w-full"
+                        className="btn text-white text-xs lg:text-sm btn-primary w-full"
                     >
                         View Details
                     </NavLink>

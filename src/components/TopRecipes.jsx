@@ -3,13 +3,14 @@ import RecipeCard from "./RecipeCard";
 import Loading from "./Loading";
 import { NavLink } from "react-router";
 import { Typewriter } from "react-simple-typewriter";
+import { Fade } from "react-awesome-reveal";
 
 const TopRecipes = () => {
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:5000/top-recipes")
+        fetch("https://flavour-forge-server.vercel.app/top-recipes")
             .then((res) => res.json())
             .then((data) => {
                 setRecipes(data);
@@ -34,14 +35,20 @@ const TopRecipes = () => {
             <div className="w-10/12 mx-auto ">
                 <div className="flex justify-between items-center">
                     <h2 className="text-2xl font-bold text-center my-6 py-10">
-                        <Typewriter words={['Top Recipes']} loop={true} cursor={true} />
+                        <Typewriter
+                            words={["Top Recipes"]}
+                            loop={true}
+                            cursor={true}
+                        />
                     </h2>
-                    <NavLink
-                        to="/all-recipes"
-                        className="text-1xl btn text-white btn-primary font-bold text-center "
-                    >
-                        See All Recipes
-                    </NavLink>
+                    <Fade duration={1000} triggerOnce>
+                        <NavLink
+                            to="/all-recipes"
+                            className="text-1xl btn text-white btn-primary font-bold text-center "
+                        >
+                            See All Recipes
+                        </NavLink>
+                    </Fade>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {recipes.map((recipe) => (

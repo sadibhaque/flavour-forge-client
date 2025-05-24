@@ -7,6 +7,7 @@ import { NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
 import WishList from "../pages/WishList";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
     const { isLight, setIsLight } = useContext(ThemeContext);
@@ -45,6 +46,7 @@ const Navbar = () => {
                     Home
                 </NavLink>
             </li>
+
             <li>
                 <NavLink
                     to="/all-recipes"
@@ -87,7 +89,7 @@ const Navbar = () => {
                             isActive ? "bg-primary rounded text-white" : ""
                         }
                     >
-                        Wish List
+                        WishList
                     </NavLink>
                 </li>
             )}
@@ -176,11 +178,18 @@ const Navbar = () => {
                                         role="button"
                                         className=""
                                     >
-                                        <img
-                                            className="w-10 h-10 rounded-full"
-                                            src={user.photoURL}
-                                            alt=""
-                                        />
+                                        <a
+                                            data-tooltip-id="my-tooltip"
+                                            data-tooltip-content="◕‿‿◕"
+                                            data-tooltip-place="right"
+                                        >
+                                            <img
+                                                className="w-10 h-10 rounded-full"
+                                                src={user.photoURL}
+                                                alt=""
+                                            />
+                                        </a>
+                                        <Tooltip id="my-tooltip" />
                                     </div>
                                     <ul
                                         tabIndex={0}

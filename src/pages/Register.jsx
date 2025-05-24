@@ -10,7 +10,6 @@ const Register = () => {
         updateUser,
         setUser,
         user,
-        setBalance,
         logoutUser,
         loginWithGoogle,
     } = useContext(AuthContext);
@@ -51,7 +50,6 @@ const Register = () => {
                         displayName: name,
                         photoURL: url,
                     });
-                    setBalance(10000);
                     toast.success("Registration successful");
                     logoutUser();
                     navigate("/auth/login");
@@ -68,7 +66,6 @@ const Register = () => {
             .then((result) => {
                 setUser(result.user);
                 toast.success("Login successful");
-                setBalance(10000);
                 navigate(location.state || "/");
             })
             .catch((error) => {
