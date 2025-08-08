@@ -84,4 +84,27 @@ Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthu
 - **ESLint Plugins** - Code quality and React-specific linting rules
 - **Vite Dev Server** - Fast development server with hot module replacement
 
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone the Repositories
+
+# Client-side
+git clone https://github.com/sadibhaque/flavour-forge-client.git
+
+1. Clone the repo and install dependencies:
+
+    ```bash
+    cd flavour-forge-client
+    npm install
+    ```
+
+2. Start the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+
 
