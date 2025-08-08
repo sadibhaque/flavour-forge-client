@@ -1,6 +1,6 @@
 # 🍽️ FlavourForge
 
-<img src="https://i.ibb.co.com/yFfrCQrL/image.png" alt="Banner" style="width:100%;"/>
+<img src="https://i.ibb.co.com/KcKkynM8/image.png" alt="Banner" style="width:100%;"/>
 
 Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthusiasts to **manage, discover, and share recipes**. Whether you're a home cook or a seasoned chef, this app allows you to curate your own recipe collection, explore new dishes, and connect with a vibrant community of food lovers.
 
