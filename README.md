@@ -1,8 +1,10 @@
 # 🍽️ FlavourForge
 
+<img src="https://i.ibb.co.com/yFfrCQrL/image.png" alt="Banner" style="width:100%;"/>
+
 Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthusiasts to **manage, discover, and share recipes**. Whether you're a home cook or a seasoned chef, this app allows you to curate your own recipe collection, explore new dishes, and connect with a vibrant community of food lovers.
 
-🌐 **Live Site:** [Visit FlavourForge](https://sadib-assignment-10-ph.netlify.app/)
+🌐 **Live Site:** [Visit FlavourForge](https://flavour-forge.netlify.app/)
 
 ---
 
@@ -41,14 +43,3 @@ Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthu
 
 ---
 
-## 🛠️ Getting Started
-
-### 1. Clone the Repositories
-
-```bash
-# Client-side
-git clone https://github.com/sadibhaque/flavour-forge-client.git
-
-# Server-side
-git clone https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-sadibhaque
-```
