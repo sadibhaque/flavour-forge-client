@@ -91,7 +91,10 @@ Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthu
 ### 1. Clone the Repositories
 
 # Client-side
-git clone https://github.com/sadibhaque/flavour-forge-client.git
+
+    ```bash
+    git clone https://github.com/sadibhaque/flavour-forge-client.git
+    ```
 
 1. Clone the repo and install dependencies:
 
