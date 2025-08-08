@@ -47,7 +47,7 @@ Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthu
 
 ```bash
 # Client-side
-git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-sadibhaque
+git clone https://github.com/sadibhaque/flavour-forge-client.git
 
 # Server-side
 git clone https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-sadibhaque
