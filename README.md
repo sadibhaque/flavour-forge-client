@@ -43,3 +43,45 @@ Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthu
 
 ---
 
+## 🛠️ Technologies Used
+
+### **Frontend Framework & Libraries**
+- **React 19.1.0** - Modern JavaScript library for building user interfaces
+- **React Router 7.6.0** - Declarative routing for React applications
+- **React DOM 19.1.0** - React package for working with the DOM
+
+### **Styling & UI**
+- **Tailwind CSS 4.1.7** - Utility-first CSS framework for rapid UI development
+- **DaisyUI 5.0.35** - Component library for Tailwind CSS
+- **Emotion React & Styled** - CSS-in-JS library for styling components
+
+### **Animations & Visual Effects**
+- **Lottie React 2.4.1** - Library for rendering After Effects animations
+- **React Awesome Reveal 4.3.1** - Animations and reveal effects
+- **AOS (Animate On Scroll) 2.3.4** - Scroll-triggered animations
+- **Motion 12.12.2** - Motion library for animations
+- **React Simple Typewriter 5.0.1** - Typewriter effect component
+
+### **Authentication & Backend**
+- **Firebase 11.8.0** - Backend-as-a-Service platform for authentication and database
+- **MongoDB** - NoSQL database for data storage (mentioned in features)
+
+### **User Interface Components**
+- **React Icons 5.5.0** - Popular icon library for React
+- **React Toastify 11.0.5** - Toast notifications for React
+- **React Tooltip 5.28.1** - Tooltip component library
+
+### **Build Tools & Development**
+- **Vite 6.3.5** - Fast build tool and development server
+- **@vitejs/plugin-react 4.4.1** - Official Vite plugin for React
+- **ESLint 9.25.0** - JavaScript linting utility
+- **TypeScript Types** - Type definitions for better development experience
+
+### **Deployment & Hosting**
+- **Netlify** - Platform for continuous deployment and hosting
+
+### **Development Tools**
+- **ESLint Plugins** - Code quality and React-specific linting rules
+- **Vite Dev Server** - Fast development server with hot module replacement
+
+
