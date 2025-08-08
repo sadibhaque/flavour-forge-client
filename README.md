@@ -88,22 +88,20 @@ Welcome to **FlavourForge**, a dynamic and user-friendly platform for food enthu
 
 ## 🛠️ Getting Started
 
-### 1. Clone the Repositories
-
-# Client-side
+1. Clone the Repository
 
     ```bash
     git clone https://github.com/sadibhaque/flavour-forge-client.git
     ```
 
-1. Clone the repo and install dependencies:
+2. Install dependencies:
 
     ```bash
     cd flavour-forge-client
     npm install
     ```
 
-2. Start the development server:
+3. Start the development server:
 
     ```bash
     npm run dev
